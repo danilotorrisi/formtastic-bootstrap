@@ -10,9 +10,10 @@ module FormtasticBootstrap
             control_label_html <<
             controls_wrapping do
               if options[:prepend]
-                prepended_input_wrapping do
-                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield, hint_html].join("\n").html_safe
+                prepended_input_wrap = prepended_input_wrapping do
+                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield].join("\n").html_safe
                 end
+                [prepended_input_wrap , hint_html].join("\n").html_safe
               else
                 [yield, hint_html].join("\n").html_safe
               end
